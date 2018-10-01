@@ -2,42 +2,45 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-version '3.3.1'
+version '3.4.2-SNAPSHOT'
 group = 'com.braintreepayments'
 
 android {
-  compileSdkVersion 28
+    compileSdkVersion 28
 
-  defaultConfig {
-    minSdkVersion 15
-    targetSdkVersion 27
-    versionCode 39
-    versionName version
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 40
+        versionName version
 
-    consumerProguardFiles 'proguard.cfg'
-  }
-
-  testOptions {
-    unitTests {
-      all {
-        jvmArgs '-noverify'
-      }
+        consumerProguardFiles 'proguard.cfg'
     }
-  }
 
-  lintOptions {
-    textReport true
-    textOutput 'stdout'
-  }
+    testOptions {
+        unitTests {
+            includeAndroidResources true
+            all {
+                jvmArgs '-noverify'
+            }
+        }
+    }
+
+    lintOptions {
+        textReport true
+        textOutput 'stdout'
+    }
 
   resourcePrefix 'bt_'
 }
 
 dependencies {
-  implementation 'com.android.support:design:27.0.0'
-  testImplementation 'junit:junit:4.12'
-  testImplementation 'org.robolectric:robolectric:3.3.2'
-  testImplementation 'org.mockito:mockito-core:2.8.9'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'io.card:android-sdk:5.5.1'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.robolectric:robolectric:3.8'
+    testImplementation 'org.mockito:mockito-core:2.8.9'
 }
 
 /* maven release */
