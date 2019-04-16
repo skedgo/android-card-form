@@ -3,7 +3,7 @@ package com.braintreepayments.cardform.test;
 import android.graphics.drawable.Drawable;
 import android.widget.EditText;
 
-import org.robolectric.RuntimeEnvironment;
+import androidx.test.core.app.ApplicationProvider;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
@@ -23,7 +23,7 @@ public class Assertions {
         if (resourceId == 0) {
             expected = null;
         } else {
-            expected = RuntimeEnvironment.application.getResources().getDrawable(resourceId);
+            expected = ApplicationProvider.getApplicationContext().getResources().getDrawable(resourceId);
         }
 
         Drawable[] drawables = editText.getCompoundDrawables();

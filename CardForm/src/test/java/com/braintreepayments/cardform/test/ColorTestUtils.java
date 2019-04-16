@@ -5,7 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.Window;
 
-import org.robolectric.RuntimeEnvironment;
+import androidx.test.core.app.ApplicationProvider;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -22,13 +22,13 @@ public class ColorTestUtils {
         Window window = mock(Window.class);
         when(window.getDecorView()).thenReturn(decorView);
         Activity activity = mock(Activity.class);
-        when(activity.getResources()).thenReturn(RuntimeEnvironment.application.getResources());
+        when(activity.getResources()).thenReturn(ApplicationProvider.getApplicationContext().getResources());
         when(activity.getWindow()).thenReturn(window);
 
         return activity;
     }
 
     public static int getColor(int color) {
-        return RuntimeEnvironment.application.getResources().getColor(color);
+        return ApplicationProvider.getApplicationContext().getResources().getColor(color);
     }
 }

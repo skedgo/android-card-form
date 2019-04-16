@@ -25,7 +25,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
+import androidx.test.core.app.ApplicationProvider;
 import org.robolectric.android.controller.ActivityController;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -1153,7 +1153,7 @@ public class CardFormTest {
     }
 
     private static void assertTextHintIs(View view, int resourceId) {
-        assertEquals(RuntimeEnvironment.application.getString(resourceId),
+        assertEquals(ApplicationProvider.getApplicationContext().getString(resourceId),
                 ((TextInputLayout) view.getParent().getParent()).getHint());
     }
 
@@ -1167,7 +1167,7 @@ public class CardFormTest {
         when(decorView.getRootView()).thenReturn(rootView);
         Window window = mock(Window.class);
         when(window.getDecorView()).thenReturn(decorView);
-        when(mActivity.getResources()).thenReturn(RuntimeEnvironment.application.getResources());
+        when(mActivity.getResources()).thenReturn(ApplicationProvider.getApplicationContext().getResources());
         when(mActivity.getWindow()).thenReturn(window);
     }
 

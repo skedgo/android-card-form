@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
+import androidx.test.core.app.ApplicationProvider;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -45,6 +45,6 @@ public class PostalCodeEditTextTest {
 
     @Test
     public void getErrorMessage_returnsErrorMessageWhenEmpty() {
-        assertEquals(RuntimeEnvironment.application.getString(R.string.bt_postal_code_required), mView.getErrorMessage());
+        assertEquals(ApplicationProvider.getApplicationContext().getString(R.string.bt_postal_code_required), mView.getErrorMessage());
     }
 }

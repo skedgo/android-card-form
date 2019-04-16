@@ -7,7 +7,7 @@ import com.braintreepayments.cardform.utils.CardType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
+import androidx.test.core.app.ApplicationProvider;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +21,7 @@ public class SupportedCardTypesViewTest {
 
     @Test
     public void setSupportedCardTypes_addsAllCardTypes() {
-        SupportedCardTypesView supportedCardTypesView = new SupportedCardTypesView(RuntimeEnvironment.application);
+        SupportedCardTypesView supportedCardTypesView = new SupportedCardTypesView(ApplicationProvider.getApplicationContext());
 
         supportedCardTypesView.setSupportedCardTypes(CardType.VISA, CardType.MASTERCARD, CardType.DISCOVER,
                 CardType.AMEX, CardType.DINERS_CLUB, CardType.JCB, CardType.MAESTRO, CardType.UNIONPAY);
@@ -40,7 +40,7 @@ public class SupportedCardTypesViewTest {
 
     @Test
     public void setSupportedCardTypes_handlesNull() {
-        SupportedCardTypesView supportedCardTypesView = new SupportedCardTypesView(RuntimeEnvironment.application);
+        SupportedCardTypesView supportedCardTypesView = new SupportedCardTypesView(ApplicationProvider.getApplicationContext());
 
         supportedCardTypesView.setSupportedCardTypes((CardType[]) null);
 
@@ -51,7 +51,7 @@ public class SupportedCardTypesViewTest {
 
     @Test
     public void setSelectedCardTypes_disablesNonSelectedCardTypes() {
-        SupportedCardTypesView supportedCardTypesView = new SupportedCardTypesView(RuntimeEnvironment.application);
+        SupportedCardTypesView supportedCardTypesView = new SupportedCardTypesView(ApplicationProvider.getApplicationContext());
         supportedCardTypesView.setSupportedCardTypes(CardType.VISA, CardType.MASTERCARD, CardType.DISCOVER,
                 CardType.AMEX, CardType.DINERS_CLUB, CardType.JCB, CardType.MAESTRO, CardType.UNIONPAY);
 
@@ -71,7 +71,7 @@ public class SupportedCardTypesViewTest {
 
     @Test
     public void setSelectedCardTypes_handlesNull() {
-        SupportedCardTypesView supportedCardTypesView = new SupportedCardTypesView(RuntimeEnvironment.application);
+        SupportedCardTypesView supportedCardTypesView = new SupportedCardTypesView(ApplicationProvider.getApplicationContext());
         supportedCardTypesView.setSupportedCardTypes(CardType.VISA, CardType.MASTERCARD, CardType.DISCOVER,
                 CardType.AMEX, CardType.DINERS_CLUB, CardType.JCB, CardType.MAESTRO, CardType.UNIONPAY);
 

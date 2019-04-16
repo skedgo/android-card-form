@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
+import androidx.test.core.app.ApplicationProvider;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -247,14 +247,14 @@ public class CardEditTextTest {
 
     @Test
     public void getErrorMessage_returnsErrorMessageWhenEmpty() {
-        assertEquals(RuntimeEnvironment.application.getString(R.string.bt_card_number_required), mView.getErrorMessage());
+        assertEquals(ApplicationProvider.getApplicationContext().getString(R.string.bt_card_number_required), mView.getErrorMessage());
     }
 
     @Test
     public void getErrorMessage_returnsErrorMessageWhenNotEmpty() {
         type("4");
 
-        assertEquals(RuntimeEnvironment.application.getString(R.string.bt_card_number_invalid), mView.getErrorMessage());
+        assertEquals(ApplicationProvider.getApplicationContext().getString(R.string.bt_card_number_invalid), mView.getErrorMessage());
     }
 
     private void helper(String start, String end, int drawable, int... spans) {

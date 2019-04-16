@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
+import androidx.test.core.app.ApplicationProvider;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -54,7 +54,7 @@ public class CvvEditTextTest {
     @Test
     public void hintDefaultsToCvv() {
         assertEquals(((TextInputLayout) mView.getParent().getParent()).getHint(),
-                RuntimeEnvironment.application.getString(R.string.bt_cvv));
+                ApplicationProvider.getApplicationContext().getString(R.string.bt_cvv));
     }
 
     @Test
@@ -62,9 +62,9 @@ public class CvvEditTextTest {
         for (CardType cardType : CardType.values()) {
             mView.setCardType(cardType);
 
-            assertEquals(RuntimeEnvironment.application.getString(cardType.getSecurityCodeName()),
+            assertEquals(ApplicationProvider.getApplicationContext().getString(cardType.getSecurityCodeName()),
                     mView.getTextInputLayoutParent().getHint());
-            assertEquals(RuntimeEnvironment.application.getString(cardType.getSecurityCodeName()),
+            assertEquals(ApplicationProvider.getApplicationContext().getString(cardType.getSecurityCodeName()),
                     mView.getContentDescription());
         }
     }
@@ -111,8 +111,8 @@ public class CvvEditTextTest {
 
     @Test
     public void getErrorMessage_returnsErrorMessageForNoCardTypeWhenEmpty() {
-        String expectedMessage = RuntimeEnvironment.application.getString(R.string.bt_cvv_required,
-                RuntimeEnvironment.application.getString(R.string.bt_cvv));
+        String expectedMessage = ApplicationProvider.getApplicationContext().getString(R.string.bt_cvv_required,
+                ApplicationProvider.getApplicationContext().getString(R.string.bt_cvv));
 
         assertEquals(expectedMessage, mView.getErrorMessage());
     }
@@ -122,8 +122,8 @@ public class CvvEditTextTest {
         for (CardType cardType : CardType.values()) {
             mView.setCardType(cardType);
 
-            String expectedMessage = RuntimeEnvironment.application.getString(R.string.bt_cvv_required,
-                    RuntimeEnvironment.application.getString(cardType.getSecurityCodeName()));
+            String expectedMessage = ApplicationProvider.getApplicationContext().getString(R.string.bt_cvv_required,
+                    ApplicationProvider.getApplicationContext().getString(cardType.getSecurityCodeName()));
             assertEquals(expectedMessage, mView.getErrorMessage());
         }
     }
@@ -131,8 +131,8 @@ public class CvvEditTextTest {
     @Test
     public void getErrorMessage_returnsErrorMessageForNoCardTypeWhenNotEmpty() {
         type("4");
-        String expectedMessage = RuntimeEnvironment.application.getString(R.string.bt_cvv_invalid,
-                RuntimeEnvironment.application.getString(R.string.bt_cvv));
+        String expectedMessage = ApplicationProvider.getApplicationContext().getString(R.string.bt_cvv_invalid,
+                ApplicationProvider.getApplicationContext().getString(R.string.bt_cvv));
 
         assertEquals(expectedMessage, mView.getErrorMessage());
     }
@@ -144,8 +144,8 @@ public class CvvEditTextTest {
         for (CardType cardType : CardType.values()) {
             mView.setCardType(cardType);
 
-            String expectedMessage = RuntimeEnvironment.application.getString(R.string.bt_cvv_invalid,
-                    RuntimeEnvironment.application.getString(cardType.getSecurityCodeName()));
+            String expectedMessage = ApplicationProvider.getApplicationContext().getString(R.string.bt_cvv_invalid,
+                    ApplicationProvider.getApplicationContext().getString(cardType.getSecurityCodeName()));
             assertEquals(expectedMessage, mView.getErrorMessage());
         }
     }

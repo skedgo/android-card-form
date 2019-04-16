@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
+import androidx.test.core.app.ApplicationProvider;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -139,14 +139,14 @@ public class ExpirationDateEditTextTest {
 
     @Test
     public void getErrorMessage_returnsErrorMessageWhenEmpty() {
-        assertEquals(RuntimeEnvironment.application.getString(R.string.bt_expiration_required), mView.getErrorMessage());
+        assertEquals(ApplicationProvider.getApplicationContext().getString(R.string.bt_expiration_required), mView.getErrorMessage());
     }
 
     @Test
     public void getErrorMessage_returnsErrorMessageWhenNotEmpty() {
         type('4');
 
-        assertEquals(RuntimeEnvironment.application.getString(R.string.bt_expiration_invalid), mView.getErrorMessage());
+        assertEquals(ApplicationProvider.getApplicationContext().getString(R.string.bt_expiration_invalid), mView.getErrorMessage());
     }
 
     private ExpirationDateEditTextTest type(char... chars) {

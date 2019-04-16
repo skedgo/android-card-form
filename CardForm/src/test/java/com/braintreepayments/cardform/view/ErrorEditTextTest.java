@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
+import androidx.test.core.app.ApplicationProvider;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -25,7 +25,7 @@ public class ErrorEditTextTest {
 
     @Before
     public void setup() {
-        mView = new ErrorEditText(RuntimeEnvironment.application);
+        mView = new ErrorEditText(ApplicationProvider.getApplicationContext());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class ErrorEditTextTest {
 
     @Test
     public void validate_showsErrorMessage() {
-        mView = new ErrorEditText(RuntimeEnvironment.application) {
+        mView = new ErrorEditText(ApplicationProvider.getApplicationContext()) {
             @Override
             public boolean isValid() {
                 return false;
@@ -145,7 +145,7 @@ public class ErrorEditTextTest {
 
     @Test
     public void validate_doesNotShowErrorMessageIfOptional() {
-        mView = new ErrorEditText(RuntimeEnvironment.application) {
+        mView = new ErrorEditText(ApplicationProvider.getApplicationContext()) {
             @Override
             public boolean isValid() {
                 return false;
