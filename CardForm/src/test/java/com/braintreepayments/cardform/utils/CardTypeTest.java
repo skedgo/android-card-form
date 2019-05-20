@@ -65,6 +65,7 @@ public class CardTypeTest {
         SAMPLE_CARDS.put("5018000000000000122", CardType.MAESTRO);
         SAMPLE_CARDS.put("6703000000000007", CardType.MAESTRO);
         SAMPLE_CARDS.put("6020111111111116", CardType.MAESTRO);
+        SAMPLE_CARDS.put("6764111111111116", CardType.MAESTRO);
 
         // Union Pay
         SAMPLE_CARDS.put("6240888888888885", CardType.UNIONPAY);
@@ -118,7 +119,7 @@ public class CardTypeTest {
     }
 
     @Test
-    public void sampleCards() {
+    public void sampleCardsAreLuhnValid() {
         for (final Map.Entry<String, CardType> entry : SAMPLE_CARDS.entrySet()) {
             final String cardNumber = entry.getKey();
             final CardType cardType = entry.getValue();
@@ -129,6 +130,22 @@ public class CardTypeTest {
             if (cardType != CardType.UNKNOWN && cardType != CardType.EMPTY) {
                 assertTrue(String.format("%s: Luhn check failed for [%s]", cardType, cardNumber),
                         CardType.isLuhnValid(cardNumber));
+            }
+        }
+    }
+
+    @Test
+    public void validateSampleCards() {
+        for (final Map.Entry<String, CardType> entry : SAMPLE_CARDS.entrySet()) {
+            final String cardNumber = entry.getKey();
+            final CardType cardType = entry.getValue();
+            final CardType actualType = CardType.forCardNumber(cardNumber);
+
+            assertEquals(String.format("CardType.forAccountNumber failed for %s", cardNumber), cardType, actualType);
+
+            if (cardType != CardType.UNKNOWN && cardType != CardType.EMPTY) {
+                assertTrue(String.format("%s: Validate check failed for [%s]", cardType, cardNumber),
+                        cardType.validate(cardNumber));
             }
         }
     }
